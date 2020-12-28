@@ -20,7 +20,7 @@ pub enum Posting {
 	UnbalancedPosting {
 		line: usize,
 		account: String,
-		comments: Vec<Comment>,
+		comment: Option<Comment>,
 		unbalanced_amount: Option<MixedAmount>,
 		balance_assertion: Option<MixedAmount>,
 		costs: Option<Costs>,
@@ -28,7 +28,7 @@ pub enum Posting {
 	BalancedPosting {
 		line: usize,
 		account: String,
-		comments: Vec<Comment>,
+		comment: Option<Comment>,
 		balanced_amount: MixedAmount,
 		balance_assertion: Option<MixedAmount>,
 		costs: Option<Costs>,

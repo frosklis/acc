@@ -1,6 +1,5 @@
 use super::super::super::model::Comment;
 use super::super::super::model::Item;
-use super::super::super::model::Posting;
 use super::super::Error;
 use super::chars;
 use super::Tokenizer;
@@ -32,10 +31,10 @@ pub(super) fn tokenize_indented_comment(tokenizer: &mut Tokenizer) -> Result<(),
 								line: tokenizer.line_index + 1,
 								comment,
 							}),
-							Some(Posting::UnbalancedPosting { comments, .. }) => comments.push(Comment {
-								line: tokenizer.line_index + 1,
-								comment,
-							}),
+							// Some(Posting::UnbalancedPosting { comments, .. }) => comments.push(Comment {
+							// 	line: tokenizer.line_index + 1,
+							// 	comment,
+							// }),
 							_ => {}
 						}
 						break;
@@ -47,6 +46,20 @@ pub(super) fn tokenize_indented_comment(tokenizer: &mut Tokenizer) -> Result<(),
 		}
 	}
 }
+
+
+pub(super) fn tokenize_inline_comment(tokenizer: &mut Tokenizer) -> Result<Option<Comment>, Error> {
+	match tokenize_comment(tokenizer)? {
+		None => Ok(None),
+		Some(comment) => {
+			Ok(Some(Comment {
+				line: tokenizer.line_index + 1,
+				comment: comment
+			}))
+		}
+	}
+}
+
 
 fn tokenize_comment(tokenizer: &mut Tokenizer) -> Result<Option<String>, Error> {
 	if chars::try_consume_char(tokenizer, |c| c == ';') {

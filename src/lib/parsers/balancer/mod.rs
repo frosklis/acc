@@ -136,7 +136,7 @@ fn balance_empty_posts(line: usize, postings: Vec<Posting>) -> Result<Vec<Postin
 			Posting::UnbalancedPosting {
 				line,
 				account,
-				comments,
+				comment,
 				unbalanced_amount,
 				balance_assertion,
 				costs,
@@ -157,7 +157,7 @@ fn balance_empty_posts(line: usize, postings: Vec<Posting>) -> Result<Vec<Postin
 					let balanced_posting = Posting::BalancedPosting {
 						line,
 						account,
-						comments,
+						comment,
 						balanced_amount,
 						balance_assertion,
 						costs,
@@ -176,7 +176,7 @@ fn balance_empty_posts(line: usize, postings: Vec<Posting>) -> Result<Vec<Postin
 						let balanced_posting = Posting::BalancedPosting {
 							line,
 							account,
-							comments,
+							comment,
 							balanced_amount: unbalanced_amount,
 							balance_assertion,
 							costs,
@@ -191,7 +191,7 @@ fn balance_empty_posts(line: usize, postings: Vec<Posting>) -> Result<Vec<Postin
 						let balanced_posting = Posting::BalancedPosting {
 							line,
 							account,
-							comments,
+							comment,
 							balanced_amount: unbalanced_amount,
 							balance_assertion,
 							costs,
@@ -234,7 +234,7 @@ fn balance_non_empty_posts(line: usize, postings: Vec<Posting>) -> Result<Vec<Po
 				Posting::UnbalancedPosting {
 					line,
 					account,
-					comments,
+					comment,
 					unbalanced_amount,
 					balance_assertion,
 					costs,
@@ -248,7 +248,7 @@ fn balance_non_empty_posts(line: usize, postings: Vec<Posting>) -> Result<Vec<Po
 						let balanced_posting = Posting::BalancedPosting {
 							line,
 							account,
-							comments,
+							comment,
 							balance_assertion,
 							costs,
 							balanced_amount,
@@ -275,7 +275,7 @@ fn balance_non_empty_posts(line: usize, postings: Vec<Posting>) -> Result<Vec<Po
 				Posting::UnbalancedPosting {
 					line,
 					account,
-					comments,
+					comment,
 					balance_assertion,
 					costs,
 					unbalanced_amount,
@@ -284,7 +284,7 @@ fn balance_non_empty_posts(line: usize, postings: Vec<Posting>) -> Result<Vec<Po
 					let balanced_posting = Posting::BalancedPosting {
 						line,
 						account,
-						comments,
+						comment,
 						balance_assertion,
 						costs,
 						balanced_amount: MixedAmount {

@@ -125,18 +125,3 @@ fn balance_last_transaction(tokenizer: &mut Tokenizer) -> Result<(), Error> {
 	tokenizer.items.append(&mut balanced_transactions);
 	Ok(())
 }
-
-// fn print_transactions(transactions: &[Transaction]) {
-// 	for transaction in transactions {
-// 		print_transaction(transaction);
-// 	}
-// }
-// pub fn print_transaction(transaction: &Transaction) {
-// 	println!("{}", transaction.description);
-// 	for posting in &transaction.postings {
-// 		println!(
-// 			"posting : {} {:?}",
-// 			posting.account, posting.unbalanced_amount
-// 		);
-// 	}
-// }

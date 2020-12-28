@@ -62,8 +62,7 @@ fn print(items: Vec<Item>, natural: bool) -> Result<(), String> {
 						State::Uncleared => " ",
 						State::Pending => " ! ",
 					},
-					code
-						.map(|c| format!("({}) ", c))
+					code.map(|c| format!("({}) ", c))
 						.unwrap_or_else(|| String::from("")),
 					description
 				);
@@ -74,16 +73,22 @@ fn print(items: Vec<Item>, natural: bool) -> Result<(), String> {
 					match posting {
 						Posting::BalancedPosting {
 							account,
-							comments,
+							comment,
 							balanced_amount,
 							..
 						} => {
 							let account_width = account.chars().count();
 							print!("{}{}", INDENT, account);
 							print_mixed_amount(balanced_amount, account_width, account_max_width);
-							for comment in comments {
-								println!("{}; {}", INDENT, comment.comment);
+							match comment {
+								Some(c) => {
+									println!("{}; {}", INDENT, c.comment);
+								}
+								_ => {}
 							}
+							// for comment in comments {
+							// 	println!("{}; {}", INDENT, comment.comment);
+							// }
 						}
 						_ => {}
 					}

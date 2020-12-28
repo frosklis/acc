@@ -1,7 +1,7 @@
 [package]
 name = "acc"
-version = "0.1.2"
-authors = ["Rudolf Schmidt <info@rudolfschmidt.com>"]
+version = "0.2.0"
+authors = ["Rudolf Schmidt <info@rudolfschmidt.com>", "Claudio Noguera <claudio.noguera@gmail.com"]
 edition = "2018"
 license = "GPL-3.0"
 description = "plaintext double-entry accounting command line tool"

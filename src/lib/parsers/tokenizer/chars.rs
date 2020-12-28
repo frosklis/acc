@@ -91,6 +91,7 @@ pub(super) fn is_char(tokenizer: &Tokenizer, char: char) -> bool {
 	}
 }
 
+/// updates line position until there no whitespaces
 pub(super) fn consume_whitespaces(tokenizer: &mut Tokenizer) {
 	while let Some(c) = tokenizer.line_characters.get(tokenizer.line_position) {
 		if !c.is_whitespace() {

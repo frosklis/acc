@@ -18,6 +18,7 @@ pub enum Error {
 	},
 }
 
+/// parses a file into items
 pub fn parse(file: &Path, items: &mut Vec<Item>) -> Result<(), String> {
 	match read_to_string(file) {
 		Err(err) => Err(format!(

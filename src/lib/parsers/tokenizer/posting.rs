@@ -1,3 +1,4 @@
+use super::comment;
 use super::super::super::model::Costs;
 use super::super::super::model::Item;
 use super::super::super::model::MixedAmount;
@@ -43,13 +44,15 @@ fn tokenize_posting(tokenizer: &mut Tokenizer, virtual_posting: bool) -> Result<
 						});
 					let costs = costs(tokenizer)?;
 
+					let comment = comment::tokenize_inline_comment(tokenizer)?;
+
 					for item in tokenizer.items.iter_mut().rev() {
 						match item {
 							Item::Transaction { postings, .. } => {
 								postings.push(Posting::UnbalancedPosting {
 									line: tokenizer.line_index + 1,
 									account: account,
-									comments: Vec::new(),
+									comment: comment,
 									balance_assertion: balance_assertion,
 									costs: costs,
 									unbalanced_amount: amount,
@@ -82,7 +85,7 @@ fn tokenize_posting(tokenizer: &mut Tokenizer, virtual_posting: bool) -> Result<
 							line: tokenizer.line_index + 1,
 							account: account,
 							balance_assertion: None,
-							comments: Vec::new(),
+							comment: None,
 							costs: None,
 							unbalanced_amount: None,
 						});

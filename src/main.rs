@@ -41,7 +41,7 @@ fn start() -> Result<(), String> {
 		Some(command) => {
 			if files.is_empty() {
 				return Err(String::from(
-					"Error : No file(s) reselected. Try --file <file> to select a file",
+					"Error : No file(s) selected. Try --file <file> to select a file",
 				));
 			}
 

@@ -35,11 +35,11 @@ pub(super) fn tokenize_decimal(
 		None => Ok(None),
 		_ => {
 			let commodity = tokenize_commodity(tokenizer, |c| {
-				c == '-' || c.is_numeric() || c.is_whitespace()
+				c == '-' || c.is_numeric() || c.is_whitespace()  || c == ';'
 			});
 			if commodity.is_empty() {
 				let (amount, _) = parse_decimal_amount(tokenizer)?;
-				let commodity = tokenize_commodity(tokenizer, |c| c == '=' || c.is_whitespace());
+				let commodity = tokenize_commodity(tokenizer, |c| c == '=' || c.is_whitespace() || c == ';');
 				Ok(Some((commodity, amount)))
 			} else {
 				super::chars::consume_whitespaces(tokenizer);
@@ -104,7 +104,7 @@ fn parse_decimal_amount(tokenizer: &mut Tokenizer) -> Result<(String, Option<cha
 				tokenizer.line_position += 1;
 			}
 			while let Some(&c) = tokenizer.line_characters.get(tokenizer.line_position) {
-				if c == '=' {
+				if (c == '=') | (c == ';') {
 					break;
 				} else if c.is_whitespace() {
 					tokenizer.line_position += 1;
